@@ -8,26 +8,32 @@ ________________________________________
 📁 Directory Structure
 
 nginx-k8s-lab/
-├── .github/workflows/docker-build.yml   # CI workflow to build & push image
-├── Dockerfile                           # Dockerfile with static index.html
-├── index.html                           # Hello World HTML
-├── k8s/
-│   ├── nginx-deployment.yaml           # NGINX Deployment + HPA + Probes
-│   ├── nginx-service.yaml              # ClusterIP Service
-│   └── ingress.yaml                    # Ingress with SSL
-├── tls/                                 # Self-signed TLS cert & key
-│   ├── tls.crt
-│   └── tls.key
-└── README.md
+
+├── .github/workflows/docker-build.yml   # CI workflow to build & push image       
+├── Dockerfile                           # Dockerfile with static index.html    
+├── index.html                           # Hello World HTML    
+├── k8s/    
+│   ├── nginx-deployment.yaml           # NGINX Deployment + HPA + Probes    
+│   ├── nginx-service.yaml              # ClusterIP Service    
+│   └── ingress.yaml                    # Ingress with SSL    
+├── tls/                                 # Self-signed TLS cert & key    
+│   ├── tls.crt    
+│   └── tls.key    
+└── README.md    
 
 ________________________________________
 
 ⚙️ Prerequisites
 •	GitHub account
+
 •	DockerHub account
+
 •	Self-hosted Linux machine (used Minikube on openSUSE SLES 15 SP6)
+
 •	Kubernetes CLI (kubectl)
+
 •	Helm
+
 •	Docker
 
 ________________________________________
