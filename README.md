@@ -41,7 +41,7 @@ ________________________________________
 🚀 Steps to Reproduce from Scratch
 
 🛠️ 1. Clone Repo
-git clone git@github.com:ivankanev/nginx-k8s.git
+git clone git@github.com:vank1chaa/nginx-k8s-lab.git
 cd nginx-k8s
 
 🐳 2. Configure Docker & GitHub Secrets
