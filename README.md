@@ -1,21 +1,24 @@
 NGINX on Kubernetes with CI/CD  
-Project Overview  
+
+Project Overview:  
+
 This project demonstrates a full CI/CD pipeline for deploying an NGINX web application to a self-hosted Kubernetes cluster, using GitHub Actions, Docker, Ingress, autoscaling, and readiness/liveness probes.  
 ________________________________________  
-✅ Completed Features  
-Step	Task	Status  
-1	Create GitHub repository	✅ Done  
-2	Register GitHub Actions self-hosted runner	✅ Done  
-3	Deploy self-hosted Kubernetes cluster with Minikube	✅ Done  
-4	Create CI/CD GitHub Actions workflow for Docker build & push	✅ Done  
-5	Deploy NGINX Ingress controller	✅ Done  
-6	Deploy NGINX image via CI/CD + Expose with Ingress (TLS/SSL)	✅ Done  
-7	Configure readinessProbe	✅ Done  
-8	Configure livenessProbe	✅ Done  
-9	Configure HPA (Horizontal Pod Autoscaler) based on CPU	✅ Done  
+Completed Features:  
 
+1	Create GitHub repository
+2	Register GitHub Actions self-hosted runner 
+3	Deploy self-hosted Kubernetes cluster with Minikube
+4	Create CI/CD GitHub Actions workflow for Docker build & push
+5	Deploy NGINX Ingress controller
+6	Deploy NGINX image via CI/CD + Expose with Ingress (TLS/SSL)  
+7	Configure readinessProbe  
+8	Configure livenessProbe 
+9	Configure HPA (Horizontal Pod Autoscaler) based on CPU  
+10 Code Quality – SonarCloud Integration  
 ________________________________________  
-📁 Directory Structure  
+Directory Structure:  
+
 nginx-k8s-lab/  
 ├── .github/workflows/docker-build.yml   # CI workflow to build & push image  
 ├── Dockerfile                           # Dockerfile with static index.html  
@@ -30,7 +33,8 @@ nginx-k8s-lab/
 └── README.md  
 
 ________________________________________  
-⚙️ Prerequisites  
+Prerequisites:  
+
 •	GitHub account  
 •	DockerHub account  
 •	Self-hosted Linux machine (used Minikube on openSUSE SLES 15 SP6)  
@@ -39,37 +43,37 @@ ________________________________________
 •	Docker  
 
 ________________________________________
-🛠️ 1. Clone Repo  
+1. Clone Repo  
 ```bash
 git clone git@github.com:vank1chaa/nginx-k8s-lab.git ;cd nginx-k8s-lab  
 ```
-🐳 2. Configure Docker & GitHub Secrets  
+2. Configure Docker & GitHub Secrets  
 Create GitHub repo secrets:  
-•	DOCKER_USERNAME: your Docker Hub username  
-•	DOCKER_PASSWORD: your Docker Hub token/password  
+•	DOCKER_USERNAME
+•	DOCKER_PASSWORD  
 These are used in the GitHub Actions workflow.  
 
-⚙️ 3. Register GitHub Runner  
+3. Register GitHub Runner  
 Download and configure self-hosted runner:  
 From your GitHub repo > Settings > Actions > Runners  
 ./config.sh --url https://github.com/vank1chaa/nginx-k8s-lab --token <TOKEN>  
 ./run.sh  
 
-🧱 4. Deploy Minikube Cluster  
+4. Deploy Minikube Cluster  
 ```bash
 minikube start --driver=docker  
 ```
-🔁 5. Enable Ingress Addon (Minikube built-in)  
+5. Enable Ingress Addon (Minikube built-in)  
 Important: Do not use both Helm and the Minikube addon. This project uses the Minikube ingress addon, which avoids Helm-related TLS issues.  
 ```bash
 minikube addons enable ingress  
 ```
 
-🧪 6. Deploy NGINX Application  
+6. Deploy NGINX Application  
 ```bash
 kubectl apply -f k8s/  
 ```
-🔐 7. Create TLS Certificate and Secret  
+7. Create TLS Certificate and Secret  
 ```bash
 mkdir -p tls
 ```  
@@ -88,12 +92,12 @@ kubectl create secret tls nginx-tls \
   --cert=./tls/tls.crt \  
   --key=./tls/tls.key  
   ```
-📥 8. Update /etc/hosts to Access Ingress  
+8. Update /etc/hosts to Access Ingress  
 Reminder: Ensure Minikube is running before executing this step, as the IP address depends on the active Minikube instance.  
 ```bash
 sudo bash -c "echo \"$(minikube ip) nginx.test\" >> /etc/hosts"  
 ```  
-📈 9. Enable Metrics Server  
+9. Enable Metrics Server  
 ```bash
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
@@ -109,7 +113,7 @@ kubectl top nodes
 ```bash  
 kubectl top pods  
 ```
-📊 10. Apply HPA  
+10. Apply HPA  
 ```bash
 kubectl autoscale deployment nginx-deployment \  
   --cpu-percent=50 \  
@@ -120,7 +124,7 @@ kubectl autoscale deployment nginx-deployment \
 kubectl get hpa  
 ```
 ________________________________________  
-🧪 Testing  
+Testing  
 •	Access service via curl -k https://nginx.test  
 •	Apply load with hey or ab to trigger HPA  
 ```bash
@@ -128,11 +132,11 @@ hey -n 100 -c 10 https://nginx.test
 for i in {1..10}; do curl -s -k https://nginx.test | grep "Hello"; done
 ```
 ________________________________________
-🔍 Code Quality – SonarCloud Integration
+Code Quality – SonarCloud Integration
 
 This project uses **SonarCloud** to automatically analyze code quality on every push to the `main` branch.
 
-✅ Analysis includes:
+Аnalysis includes:
 - Security, reliability, and maintainability ratings  
 - Code duplication detection  
 - Static issue detection via GitHub Actions workflow  
@@ -142,7 +146,7 @@ This project uses **SonarCloud** to automatically analyze code quality on every 
 - Workflow file: `.github/workflows/docker-build.yml`
 
 Results available at:  
-👉 [https://sonarcloud.io/project/overview?id=vank1chaa_nginx-k8s-lab](https://sonarcloud.io/project/overview?id=vank1chaa_nginx-k8s-lab)
+[https://sonarcloud.io/project/overview?id=vank1chaa_nginx-k8s-lab](https://sonarcloud.io/project/overview?id=vank1chaa_nginx-k8s-lab)
 
 ---
 
@@ -154,12 +158,3 @@ git add README.md
 git commit -m "Test SonarCloud CI"
 git push origin main
 ```
-
-________________________________________  
-📝 Notes  
-•	You can optionally integrate SonarCloud in .github/workflows/ as step 10  
-•	TLS is self-signed, acceptable for demo purposes  
-•	Uses GitHub Actions + DockerHub + Minikube + Kubernetes  
-•	Ingress must be enabled using minikube addons enable ingress (not Helm)  
-•	Ingress support requires the correct ingressClassName and networking.k8s.io/v1 schema.  
-________________________________________  
