@@ -6,7 +6,7 @@ This project demonstrates a full CI/CD pipeline for deploying an NGINX web appli
 ________________________________________  
 Completed Features:  
 
-1	Create GitHub repository
+1	Create GitHub repository  
 2	Register GitHub Actions self-hosted runner  
 3	Deploy self-hosted Kubernetes cluster with Minikube  
 4	Create CI/CD GitHub Actions workflow for Docker build & push  
