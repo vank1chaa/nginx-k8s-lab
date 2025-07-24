@@ -7,15 +7,15 @@ ________________________________________
 Completed Features:  
 
 1	Create GitHub repository
-2	Register GitHub Actions self-hosted runner 
-3	Deploy self-hosted Kubernetes cluster with Minikube
-4	Create CI/CD GitHub Actions workflow for Docker build & push
-5	Deploy NGINX Ingress controller
+2	Register GitHub Actions self-hosted runner  
+3	Deploy self-hosted Kubernetes cluster with Minikube  
+4	Create CI/CD GitHub Actions workflow for Docker build & push  
+5	Deploy NGINX Ingress controller  
 6	Deploy NGINX image via CI/CD + Expose with Ingress (TLS/SSL)  
 7	Configure readinessProbe  
 8	Configure livenessProbe 
-9	Configure HPA (Horizontal Pod Autoscaler) based on CPU  
-10 Code Quality – SonarCloud Integration  
+9	Configure HPA (Horizontal Pod Autoscaler) based on CPU 
+10 Code Quality – SonarCloud Integration 
 ________________________________________  
 Directory Structure:  
 
