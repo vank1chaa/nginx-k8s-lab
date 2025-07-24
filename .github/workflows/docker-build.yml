@@ -1,21 +1,39 @@
-name: Build and Push Docker Image
+name: Build and Analyze
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  docker:
+  build:
     runs-on: self-hosted
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    - name: Build Docker Image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/nginx-k8s:latest .
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
-    - name: Push to DockerHub
-      run: |
-        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker push ${{ secrets.DOCKER_USERNAME }}/nginx-k8s:latest
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.DOCKER_USERNAME }}/nginx-k8s-lab:latest
+
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        organization: ${{ secrets.SONAR_ORG }}
+        projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
