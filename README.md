@@ -45,12 +45,14 @@ Prerequisites:
 ________________________________________
 1. Clone Repo  
 ```bash
-git clone git@github.com:vank1chaa/nginx-k8s-lab.git ;cd nginx-k8s-lab  
+git clone git@github.com:vank1chaa/nginx-k8s-lab.git
+```
+```bash
+cd nginx-k8s-lab  
 ```
 2. Configure Docker & GitHub Secrets  
 Create GitHub repo secrets:  
 •	DOCKER_USERNAME
-
 •	DOCKER_PASSWORD  
 These are used in the GitHub Actions workflow.  
 
@@ -79,19 +81,16 @@ kubectl apply -f k8s/
 mkdir -p tls
 ```  
 ```bash
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 \  
-  -keyout tls/tls.key \  
-  -out tls/tls.crt \  
-  -subj "/CN=nginx.test" \  
-  -addext "subjectAltName=DNS:nginx.test"  
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout tls/tls.key \
+  -out tls/tls.crt \
+  -subj "/CN=nginx.test" \
+  -addext "subjectAltName=DNS:nginx.test"
 ```
 ```bash
-kubectl delete secret nginx-tls --ignore-not-found
-```
-```bash
-kubectl create secret tls nginx-tls \  
-  --cert=./tls/tls.crt \  
-  --key=./tls/tls.key  
+kubectl create secret tls nginx-tls \
+  --cert=./tls/tls.crt \
+  --key=./tls/tls.key
   ```
 8. Update /etc/hosts to Access Ingress  
 Reminder: Ensure Minikube is running before executing this step, as the IP address depends on the active Minikube instance.  
@@ -103,9 +102,9 @@ sudo bash -c "echo \"$(minikube ip) nginx.test\" >> /etc/hosts"
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 ```
   ```bash
-kubectl patch deployment metrics-server -n kube-system \  
-  --type=json \  
-  -p='[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value": "--kubelet-insecure-tls"}]'  
+kubectl patch deployment metrics-server -n kube-system \
+  --type=json \
+  -p='[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value": "--kubelet-insecure-tls"}]'
 ```
 Wait a few seconds, then verify:   
 ```bash
@@ -116,9 +115,9 @@ kubectl top pods
 ```
 10. Apply HPA  
 ```bash
-kubectl autoscale deployment nginx-deployment \  
-  --cpu-percent=50 \  
-  --min=2 \  
+kubectl autoscale deployment nginx-deployment \
+  --cpu-percent=50 \
+  --min=2 \
   --max=5
 ```
 ```bash  
@@ -126,10 +125,15 @@ kubectl get hpa
 ```
 ________________________________________  
 Testing  
-•	Access service via curl -k https://nginx.test  
+•	Access service via:
+```bash
+curl -k https://nginx.test
+``` 
 •	Apply load with hey or ab to trigger HPA  
 ```bash
 hey -n 100 -c 10 https://nginx.test  
+```
+```bash
 for i in {1..10}; do curl -s -k https://nginx.test | grep "Hello"; done
 ```
 ________________________________________
@@ -155,9 +159,13 @@ To simulate or demonstrate a working CI scan:
 
 ```bash
 echo "# dummy change" >> README.md
+```
+```bash
 git add README.md
+```
+```bash
 git commit -m "Test SonarCloud CI"
+```
+```bash
 git push origin main
-```  
-# dummy change
-# dummy change
+```
