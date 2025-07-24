@@ -1,7 +1,26 @@
 NGINX on Kubernetes with CI/CD  
 Project Overview  
 This project demonstrates a full CI/CD pipeline for deploying an NGINX web application to a self-hosted Kubernetes cluster, using GitHub Actions, Docker, Ingress, autoscaling, and readiness/liveness probes.  
+________________________________________  
+🔍 Code Quality – SonarCloud Integration
+This project uses SonarCloud to automatically analyze code quality on every push to the main branch.
 
+✅ Analysis includes:
+
+Security, reliability, and maintainability ratings
+
+Code duplication detection
+
+Static issue detection via GitHub Actions workflow
+
+How it works:
+
+GitHub Actions triggers SonarCloud analysis on every push or pull request to main.
+
+Workflow file: .github/workflows/docker-build.yml
+
+Results available at:
+👉 https://sonarcloud.io/project/overview?id=vank1chaa_nginx-k8s-lab
 ________________________________________  
 ✅ Completed Features  
 Step	Task	Status  
