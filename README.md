@@ -52,7 +52,7 @@ These are used in the GitHub Actions workflow.
 
 ⚙️ 3. Register GitHub Runner  
 Download and configure self-hosted runner:  
-# From your GitHub repo > Settings > Actions > Runners  
+From your GitHub repo > Settings > Actions > Runners  
 ./config.sh --url https://github.com/vank1chaa/nginx-k8s-lab --token <TOKEN>  
 ./run.sh  
 
@@ -89,7 +89,7 @@ kubectl patch deployment metrics-server -n kube-system \
   --type=json \  
   -p='[{"op": "add", "path": "/spec/template/spec/containers/0/args/-", "value": "--kubelet-insecure-tls"}]'  
 
-# Wait a few seconds, then verify:   
+Wait a few seconds, then verify:   
 kubectl top nodes  
 kubectl top pods  
 
