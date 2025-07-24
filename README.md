@@ -61,7 +61,9 @@ minikube start --driver=docker
 ```
 🔁 5. Enable Ingress Addon (Minikube built-in)  
 Important: Do not use both Helm and the Minikube addon. This project uses the Minikube ingress addon, which avoids Helm-related TLS issues.  
+```bash
 minikube addons enable ingress  
+```
 
 🧪 6. Deploy NGINX Application  
 ```bash
