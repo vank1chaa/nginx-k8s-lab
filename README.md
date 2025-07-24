@@ -50,6 +50,7 @@ git clone git@github.com:vank1chaa/nginx-k8s-lab.git ;cd nginx-k8s-lab
 2. Configure Docker & GitHub Secrets  
 Create GitHub repo secrets:  
 •	DOCKER_USERNAME
+
 •	DOCKER_PASSWORD  
 These are used in the GitHub Actions workflow.  
 
