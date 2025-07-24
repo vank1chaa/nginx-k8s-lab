@@ -15,7 +15,7 @@ Completed Features:
 7	Configure readinessProbe  
 8	Configure livenessProbe  
 9	Configure HPA (Horizontal Pod Autoscaler) based on CPU  
-10 Code Quality – SonarCloud Integration  
+10  Code Quality – SonarCloud Integration  
 ________________________________________  
 Directory Structure:  
 
@@ -157,4 +157,4 @@ echo "# dummy change" >> README.md
 git add README.md
 git commit -m "Test SonarCloud CI"
 git push origin main
-```
+```  
