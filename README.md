@@ -13,7 +13,7 @@ Completed Features:
 5	Deploy NGINX Ingress controller  
 6	Deploy NGINX image via CI/CD + Expose with Ingress (TLS/SSL)  
 7	Configure readinessProbe  
-8	Configure livenessProbe 
+8	Configure livenessProbe  
 9	Configure HPA (Horizontal Pod Autoscaler) based on CPU  
 10 Code Quality – SonarCloud Integration  
 ________________________________________  
