@@ -45,16 +45,16 @@ Prerequisites:
 ________________________________________
 1. Clone Repo  
 ```bash
-git clone git@github.com:vank1chaa/nginx-k8s-lab.git
+git clone https://github.com/vank1chaa/nginx-k8s-lab.git
 ```
 ```bash
 cd nginx-k8s-lab  
 ```
 2. Configure Docker & GitHub Secrets  
 Create GitHub repo secrets:  
-•	DOCKER_USERNAME
-•	DOCKER_PASSWORD  
-These are used in the GitHub Actions workflow.  
+DOCKER_USERNAME
+
+DOCKER_PASSWORD 
 
 3. Register GitHub Runner  
 Download and configure self-hosted runner:  
@@ -141,12 +141,12 @@ Code Quality – SonarCloud Integration
 
 This project uses **SonarCloud** to automatically analyze code quality on every push to the `main` branch.
 
-Аnalysis includes:
+Checks the following:
 - Security, reliability, and maintainability ratings  
 - Code duplication detection  
 - Static issue detection via GitHub Actions workflow  
 
-**How it works:**
+How it works:
 - GitHub Actions triggers SonarCloud analysis on every `push` or `pull request` to `main`.
 - Workflow file: `.github/workflows/docker-build.yml`
 
@@ -155,7 +155,7 @@ Results available at:
 
 ---
 
-To simulate or demonstrate a working CI scan:
+To simulate a working CI scan:
 
 ```bash
 echo "# dummy change" >> README.md
