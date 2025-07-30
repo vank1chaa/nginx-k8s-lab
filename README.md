@@ -153,6 +153,19 @@ How it works:
 Results available at:  
 [https://sonarcloud.io/project/overview?id=vank1chaa_nginx-k8s-lab](https://sonarcloud.io/project/overview?id=vank1chaa_nginx-k8s-lab)
 
+
+---
+
+To install SonarCloud
+
+Create SonarCloud Config
+in nginx-k8s-lab-main/sonar-project.properties add
+
+sonar.projectKey=vank1chaa_nginx-k8s-lab
+sonar.organization=vank1chaa
+sonar.host.url=https://sonarcloud.io
+sonar.login=7049bcab95cd2f6e30d3b8cddaa1f0117a0cd9ef
+
 ---
 
 To simulate a working CI scan:
