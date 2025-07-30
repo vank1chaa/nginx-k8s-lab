@@ -167,8 +167,7 @@ sonar.organization=vank1chaa
 
 sonar.host.url=https://sonarcloud.io
 
-sonar.login=.
-
+sonar.sources=.
 
 ---
 
