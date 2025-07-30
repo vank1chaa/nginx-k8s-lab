@@ -156,27 +156,32 @@ Results available at:
 
 ---
 
-To install SonarCloud
+To install SonarCloud if not already:
 
-Create SonarCloud Config
-in nginx-k8s-lab-main/sonar-project.properties add
-
-sonar.projectKey=vank1chaa_nginx-k8s-lab
-
-sonar.organization=vank1chaa
-
-sonar.host.url=https://sonarcloud.io
-
-sonar.sources=.
-
+```bash
+cd ~; wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+```
+```bash
+unzip sonar-scanner-cli-5.0.1.3006-linux.zip
+```
+```bash
+sudo mv sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner
+```
+```bash
+echo 'export PATH=$PATH:/opt/sonar-scanner/bin' >> ~/.bashrc
+```
+```bash
+source ~/.bashrc
+```
 ---
 
 add the following lines to your ~/.bashrc file
-
+```bash
 export PATH=$PATH:/opt/sonar-scanner/bin
-
+```
+```bash
 export SONAR_TOKEN=7049bcab95cd2f6e30d3b8cddaa1f0117a0cd9ef
-
+```
 ---
 
 To simulate a working CI scan:
@@ -193,4 +198,3 @@ git commit -m "Test SonarCloud CI"
 ```bash
 git push origin main
 ```
-# dummy change
