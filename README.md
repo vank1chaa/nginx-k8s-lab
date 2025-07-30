@@ -162,8 +162,11 @@ Create SonarCloud Config
 in nginx-k8s-lab-main/sonar-project.properties add
 
 sonar.projectKey=vank1chaa_nginx-k8s-lab
+
 sonar.organization=vank1chaa
+
 sonar.host.url=https://sonarcloud.io
+
 sonar.login=7049bcab95cd2f6e30d3b8cddaa1f0117a0cd9ef
 
 ---
